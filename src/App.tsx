@@ -1,35 +1,75 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import {ProductCard} from "./components/ProductCard";
+import {productList} from "./data";
+import Modal from "./components/ui/Modal";
+import { Button } from "@headlessui/react";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+ 
+ 
+  // STATE
+  const [isOpen, setIsOpen] = useState(false)
 
+  // HANDLER
+  function open() {
+    setIsOpen(true)
+  }
+
+  function close() {
+    setIsOpen(false)
+  }
+
+
+
+  //Render product list
+  const renderProductList = productList.map(product => <ProductCard key={product.id} product={product} />);
+
+
+  
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1 className="text-3xl font-bold ">Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+  // Container
+  <main className="container xl:p-4  m-auto">
 
-export default App
+    {/* Add New Product Button */}
+  <Button className="bg-yellow-500 w-full h-10 rounded-md  m-1 hover:bg-slate-300"
+  onClick={()=>{
+    open();
+  }}
+  >Add New Product</Button>  
+
+  <div className="m-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 p-2 rounded-md">
+    {renderProductList}
+  </div>
+
+    
+
+    <Modal isOpen={isOpen} close={close} title="Add New Product">
+      <div className="flex items-center ">
+        {/* Submit */}
+      <Button className="bg-yellow-500 w-full h-10 rounded-md  m-1 hover:bg-slate-300"
+      onClick={()=>{close();}}
+      >Submit</Button>  
+        {/* Cancel */}
+      <Button className="bg-emerald-500 w-full h-10 rounded-md m-1 hover:bg-sky-300"
+      onClick={()=>{close();}}
+      >Cancel</Button>  
+      </div>
+     </Modal>
+
+
+  {/* <Button onClick={openModal} className="bg-blue-500">Open Modal</Button>
+
+  <Modal isOpen={isOpen} close={close} title="My Modal">
+    <Button onClick={close} className="bg-green-500">Submit</Button>
+  </Modal> */}
+</main>
+  );
+};
+
+export default App;
+
+
+
+
+
+
