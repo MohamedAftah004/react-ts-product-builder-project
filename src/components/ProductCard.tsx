@@ -47,6 +47,7 @@ const ProductCard = ({product}: IProps) => {
       </div>
 
       {/* Action Buttons */}
+
       <div className="flex justify-between items-center gap-2 mt-auto">
         <Button
           className="bg-blue-600 text-white px-4 py-2 rounded-md flex-1"
