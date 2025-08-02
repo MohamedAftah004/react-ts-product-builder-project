@@ -2,36 +2,112 @@ import ProductCard from "./components/ProductCard";
 import Button from "./components/ui/Button";
 import Modal from "./components/ui/Modal";
 import {productList} from "./data";
-import {useState} from "react";
-import Input from "./components/ui/input";
+import {useState, type ChangeEvent, type FormEvent} from "react";
+import Input from "./components/ui/Input";
+import type {IProduct} from "./interfaces";
+import {productValidation} from "./validation";
+import ErrrorMessage from "./components/ui/ErrrorMessage";
+import {Description} from "@headlessui/react";
 
 const App = () => {
   // ------------ STATE ------------
+
+  const defaultProductObject = {
+    title: "",
+    description: "",
+    imageURL: "",
+    price: "",
+    colors: [],
+    category: {
+      name: "",
+      imageURL: "",
+    },
+  };
+
+  const [product, setProduct] = useState<IProduct>(defaultProductObject);
+
   const [isOpen, setIsOpen] = useState(false);
 
-  // ------------ HANDLER ------------
-  function open() {
-    setIsOpen(true);
-  }
+  // error handler useState
+  const [errors, setErrors] = useState({
+    title: "",
+    description: "",
+    imageURL: "",
+    price: "",
+  });
 
-  function close() {
+  // ------------ HANDLER ------------
+  const open = () => {
+    setIsOpen(true);
+  };
+  const close = () => {
     setIsOpen(false);
-  }
+  };
+  const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    const {value, name} = event.target;
+
+    setProduct({
+      ...product,
+      [name]: value,
+    });
+
+    setErrors({
+      ...errors,
+      [name]: "",
+    });
+  };
+
+  // Validations
+
+  // Submit and cancel
+  const submitHandler = (event: FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    const errors = productValidation({
+      title: product.title,
+      description: product.description,
+      imageURL: product.imageURL,
+      price: product.price,
+    });
+    const hasErrorMessage =
+      Object.values(errors).some((value) => value === "") &&
+      Object.values(errors).every((value) => value === "");
+
+    if (!hasErrorMessage) {
+      setErrors(errors);
+      return;
+    }
+    console.log("Send this data to out server");
+  };
+
+  const onCancel = () => {
+    console.log("Canceled");
+    setProduct(defaultProductObject);
+  };
+
   const formInputsList = [
-    {id: "name", label: "Name", name: "name"},
-    {id: "price", label: "Price", name: "price"},
-    {id: "description", label: "Description", name: "description"},
+    {id: "title", label: "Product Title", name: "title"},
+    {id: "description", label: "Product Description", name: "description"},
+    {id: "imageUrl", label: "Product Image Url", name: "imageURL"},
+    {id: "price", label: "Product Price", name: "price"},
   ];
 
   const renderFormInputList = formInputsList.map((input) => (
-    <div>
+    <div key={input.id}>
       <label
         htmlFor={input.id}
         className="mb-[2px] text-md font-medium text-orange-50"
       >
         {input.label}
       </label>
-      <Input type="text" id={input.id} name={input.name} />
+      {/* Here Is The Error Should Solved          :) */}
+      <Input
+        type="text"
+        id={input.id}
+        name={input.name}
+        value={product[input.name as keyof IProduct] as string}
+        onChange={onChangeHandler}
+      />
+      <ErrrorMessage msg={errors[input.name]} />
     </div>
   ));
 
@@ -57,7 +133,7 @@ const App = () => {
 
       <Modal isOpen={isOpen} close={close} title="Add New Product">
         {/* list of inputs */}
-        <form className="flex-col space-y-6">
+        <form className="flex-col space-y-6" onSubmit={submitHandler}>
           <div className="flex flex-col items-stretch space-y-2">
             {renderFormInputList}
           </div>
@@ -67,10 +143,9 @@ const App = () => {
               Submit
             </Button>
             <Button
+              type="button"
               className="bg-slate-400 text-white px-4 hover:bg-slate-500 py-2 rounded-md flex-1"
-              onClick={() => {
-                close();
-              }}
+              onClick={onCancel}
             >
               Cancel
             </Button>
