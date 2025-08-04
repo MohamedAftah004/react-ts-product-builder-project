@@ -47,20 +47,20 @@ export const productValidation = (product: {
   // title validation
   if (
     !product.title.trim() ||
-    product.title.length < 10 ||
-    product.title.length > 80
+    product.title.length < 5 ||
+    product.title.length > 50
   ) {
-    errors.title = "Product title must be between 10 and 80 characters!";
+    errors.title = "Product title must be between 5 and 50 characters!";
   }
 
   // description validation
   if (
     !product.description.trim() ||
-    product.description.length < 50 ||
+    product.description.length < 10 ||
     product.description.length > 500
   ) {
     errors.description =
-      "Description title must be between 50 and 500 characters!";
+      "Description title must be between 10 and 500 characters!";
   }
 
   if (!product.imageURL.trim() || !validateUrl.test(product.imageURL)) {

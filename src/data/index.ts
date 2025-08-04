@@ -8,7 +8,7 @@ export const productList: IProduct[] = [
     imageURL:
       "https://www.mad4wheels.com/img/free-car-images/mobile/2933/chevrolet-camaro-lsx-by-reggie-jackson-1969-247866.jpg",
     price: "45000",
-    colors: ["Red", "Black", "White"],
+    colors: ["#FF0000", "#000000", "#FFFF00"], // Red, Black, Yellow
     category: {
       name: "Cars",
       imageURL: "https://example.com/images/categories/cars.jpg",
@@ -21,7 +21,7 @@ export const productList: IProduct[] = [
     imageURL:
       "https://www.mad4wheels.com/img/free-car-images/mobile/14737/chevrolet-silverado-midnight-edition-2015-422827.jpg",
     price: "52000",
-    colors: ["Black", "Gray"],
+    colors: ["#000000", "#808080", "#A52A2A"], // Black, Gray, Brown
     category: {
       name: "Cars",
       imageURL: "https://example.com/images/categories/cars.jpg",
@@ -34,7 +34,7 @@ export const productList: IProduct[] = [
     imageURL:
       "https://www.mad4wheels.com/img/free-car-images/mobile/11067/chevrolet-corvette-c6-z06-2013-354507.jpg",
     price: "61000",
-    colors: ["Yellow", "Black"],
+    colors: ["#FFFF00", "#000000", "#00FF00"], // Yellow, Black, Lime
     category: {
       name: "Cars",
       imageURL: "https://example.com/images/categories/cars.jpg",
@@ -47,7 +47,7 @@ export const productList: IProduct[] = [
     imageURL:
       "https://www.mad4wheels.com/img/free-car-images/mobile/21033/chevrolet-corvette-c4-grand-sport-1996-759065.jpg",
     price: "39000",
-    colors: ["Blue", "White"],
+    colors: ["#0000FF", "#FFFFFF", "#ADD8E6"], // Blue, White, Light Blue
     category: {
       name: "Cars",
       imageURL: "https://example.com/images/categories/cars.jpg",
@@ -60,7 +60,7 @@ export const productList: IProduct[] = [
     imageURL:
       "https://www.mad4wheels.com/img/free-car-images/mobile/618/chevrolet-corvette-c6-convertible-2005-486695.jpg",
     price: "43000",
-    colors: ["Black", "Silver"],
+    colors: ["#000000", "#808080", "#FFD700"], // Black, Gray, Gold
     category: {
       name: "Cars",
       imageURL: "https://example.com/images/categories/cars.jpg",
@@ -73,7 +73,7 @@ export const productList: IProduct[] = [
     imageURL:
       "https://www.mad4wheels.com/img/free-car-images/mobile/7959/chevrolet-malibu-ltz-china-version-2011-302956.jpg",
     price: "27000",
-    colors: ["White", "Gray"],
+    colors: ["#FFFFFF", "#808080", "#00FFFF"], // White, Gray, Aqua
     category: {
       name: "Cars",
       imageURL: "https://example.com/images/categories/cars.jpg",
@@ -86,7 +86,7 @@ export const productList: IProduct[] = [
     imageURL:
       "https://www.mad4wheels.com/img/free-car-images/mobile/13541/chevrolet-corvette-c7-stingray-by-hennessey-2014-396210.jpg",
     price: "67000",
-    colors: ["Black", "Red"],
+    colors: ["#000000", "#FF0000", "#800080"], // Black, Red, Purple
     category: {
       name: "Cars",
       imageURL: "https://example.com/images/categories/cars.jpg",
@@ -99,7 +99,7 @@ export const productList: IProduct[] = [
     imageURL:
       "https://www.mad4wheels.com/img/free-car-images/mobile/15165/chevrolet-trax-red-line-series-concept-2015-438147.jpg",
     price: "31000",
-    colors: ["Gray", "Silver"],
+    colors: ["#808080", "#ADD8E6", "#AFA1CB"], // Gray, Light Blue, Light Pink
     category: {
       name: "Cars",
       imageURL: "https://example.com/images/categories/cars.jpg",
@@ -112,7 +112,7 @@ export const productList: IProduct[] = [
     imageURL:
       "https://www.mad4wheels.com/img/free-car-images/mobile/12123/chevrolet-corvette-c7-stingray-2013-388938.jpg",
     price: "64000",
-    colors: ["Blue", "Black", "Red"],
+    colors: ["#0000FF", "#FF0000", "#000000", "#F000BA"], // Blue, Red, Black, Pink
     category: {
       name: "Cars",
       imageURL: "https://example.com/images/categories/cars.jpg",
@@ -125,10 +125,30 @@ export const productList: IProduct[] = [
     imageURL:
       "https://www.mad4wheels.com/img/free-car-images/mobile/12453/chevrolet-corvette-c7-stingray-convertible-2013-377107.jpg",
     price: "66000",
-    colors: ["Red", "White"],
+    colors: ["#FF0000", "#FFFFFF", "#FFD700"], // Red, White, Gold
     category: {
       name: "Cars",
       imageURL: "https://example.com/images/categories/cars.jpg",
     },
   },
 ];
+
+
+export const  Colors = [
+  "#000000", // Black
+  "#FF0000", // Red
+  "#00FF00", // Lime
+  "#0000FF", // Blue
+  "#FFFF00", // Yellow
+  "#FFA500", // Orange
+  "#800080", // Purple
+  "#00FFFF", // Cyan / Aqua
+  "#FFC0CB", // Pink
+  "#AFA1CB", // Pink
+  "#F000BA", // Pink
+  "#808080", // Gray
+  "#008000", // Green
+  "#A52A2A", // Brown
+  "#ADD8E6", // Light Blue
+  "#FFD700", // Gold
+  ]; 

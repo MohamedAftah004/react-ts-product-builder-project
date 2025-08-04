@@ -8,8 +8,17 @@ interface IProps {
   product: IProduct;
 }
 
+
 const ProductCard = ({product}: IProps) => {
   const {title, description, imageURL, price, colors, category} = product;
+
+
+
+  // ------------- RENDER ---------------
+// render product color:
+const renderProductColors = colors.map(color => 
+      <CircleItemColor key={color} colorHash={color}/>)
+
 
   return (
     <div className="w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto border rounded-xl p-4 shadow-sm flex flex-col bg-white">
@@ -28,9 +37,8 @@ const ProductCard = ({product}: IProps) => {
 
       {/* Color Circles */}
       <div className="flex items-center gap-2 mb-4">
-        {colors.map((color, idx) => (
-          <CircleItemColor key={idx} color={color} />
-        ))}
+        {renderProductColors}
+        
       </div>
 
       {/* Price & Category Icon */}
@@ -49,13 +57,13 @@ const ProductCard = ({product}: IProps) => {
       {/* Action Buttons */}
 
       <div className="flex justify-between items-center gap-2 mt-auto">
-        <Button
+        <Button type="button"
           className="bg-blue-600 text-white px-4 py-2 rounded-md flex-1"
           onClick={() => alert("Edit Clicked Now!")}
         >
           Edit
         </Button>
-        <Button className="bg-red-600 text-white px-4 py-2 rounded-md flex-1">
+        <Button type="button" className="bg-red-600 text-white px-4 py-2 rounded-md flex-1">
           Delete
         </Button>
       </div>

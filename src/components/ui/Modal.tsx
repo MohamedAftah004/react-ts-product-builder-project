@@ -18,6 +18,7 @@ const Modal = ({isOpen, close, title, children}: IProps) => {
         onClose={close}
         __demoMode
       >
+        {/* orange-500/85 */}
         {/* blur effect */}
         <div className="fixed inset-0 bg-slate-950/90 backdrop-blur-none" />
 
@@ -25,13 +26,13 @@ const Modal = ({isOpen, close, title, children}: IProps) => {
           <div className="flex min-h-full items-center justify-center p-4">
             <DialogPanel
               transition
-              className="w-full max-w-md rounded-xl bg-orange-500/85 p-6 backdrop-blur-2xl duration-300 ease-out data-closed:transform-[scale(95%)] 
-              data-closed:opacity-0 hover:bg-orange-500/90 "
+              className="w-full max-w-md rounded-xl border border-white bg-slate-50  p-6 backdrop-blur-2xl duration-300 ease-out data-closed:transform-[scale(95%)] 
+              data-closed:opacity-0 hover:bg-slate-100 "
             >
               {title && (
                 <DialogTitle
                   as="h3"
-                  className="text-base/7  text-xl font-bold  text-white/85  "
+                  className="text-base/7  text-xl font-bold  text-violet-700  hover:text-violet-800 cursor-text"
                 >
                   {title}
                 </DialogTitle>
