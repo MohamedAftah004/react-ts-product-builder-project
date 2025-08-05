@@ -10,3 +10,9 @@ export interface IProduct {
     imageURL: string;
   };
 }
+
+export interface ICategory {
+  id: string;
+  name: string;
+  imageURL: string;
+}

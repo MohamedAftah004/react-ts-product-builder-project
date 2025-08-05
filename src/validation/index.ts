@@ -1,38 +1,16 @@
-/**
- * Validates product input fields based on defined business rules.
- *
- * This function checks the following fields of a product:
- * - `title`: Required, must be between 10 and 80 characters.
- * - `description`: Required, must be between 50 and 500 characters.
- * - `imageURL`: Required, must be a valid image URL ending with a known image extension.
- * - `price`: Required, must be a numeric string.
- *
- * @param product - An object containing product fields to validate.
- * @returns An object containing validation errors for each field. Empty strings indicate no error.
- *
- * @example
- * const errors = productValidation({
- *   title: "New Product",
- *   description: "This is a sample product description.",
- *   imageURL: "https://example.com/image.jpg",
- *   price: "29.99"
- * });
- *
- * if (errors.title) {
- *   console.log(errors.title); // Logs title-related validation error, if any.
- * }
- */
 export const productValidation = (product: {
   title: string;
   description: string;
   imageURL: string;
   price: string;
+  colors?: string[];
 }) => {
   type ErrorsType = {
     title: string;
     description: string;
     imageURL: string;
     price: string;
+    colors?: string;
   };
 
   const errors: ErrorsType = {
@@ -40,6 +18,7 @@ export const productValidation = (product: {
     description: "",
     imageURL: "",
     price: "",
+    colors: "",
   };
 
   const validateUrl = /\.(jpeg|jpg|gif|png|webp|avif|tiff|bmp)$/i;
@@ -63,6 +42,7 @@ export const productValidation = (product: {
       "Description title must be between 10 and 500 characters!";
   }
 
+  // Image
   if (!product.imageURL.trim() || !validateUrl.test(product.imageURL)) {
     errors.imageURL = "Valid image URL is required!";
   }
@@ -71,5 +51,8 @@ export const productValidation = (product: {
     errors.price = "Valid price is required!";
   }
 
+  // Color
+  if (!product.colors || product.colors.length === 0)
+    errors.colors = "Please select at least one color!";
   return errors;
 };
